@@ -71,7 +71,7 @@ namespace DailyLogg
 
         public void DeleteEntries()
         {
-            Console.WriteLine("Skriv nøyaktig datoen du vil slette");
+            Console.WriteLine("Skriv nøyaktig dato du vil slette");
             DateTime dateTime = ReadDate();
             _database.RemoveEntry(dateTime);
         }
@@ -92,16 +92,19 @@ namespace DailyLogg
                     Console.WriteLine("Skriv den nye teksten");
                     string text = Console.ReadLine();
                     selected.EntryText = text;
+                    _database.SaveData();
                     break;
                 case 2:
                     Console.WriteLine("Skriv den nye teksten");
                     string text2 = Console.ReadLine();
                     selected.ImprovementEntry = text2;
+                    _database.SaveData();
                     break;
                 case 3:
                     Console.WriteLine("Skriv den nye verdien til skalavurderingen");
                     int value = Convert.ToInt32(Console.ReadLine());
                     selected.DayEvaluation = value;
+                    _database.SaveData();
                     break;
                 default:
                     Console.WriteLine($"{choice} er ikke en gyldig kommando");
@@ -122,9 +125,6 @@ namespace DailyLogg
             PrintEntries(DateTime.Now.AddDays(-1));
             Console.WriteLine("I dag:\n-------------------------------------------------------------");
             PrintEntries(DateTime.Today);
-            Console.WriteLine();
-            Console.WriteLine("I morgen:\n-------------------------------------------------------------");
-            PrintEntries(DateTime.Now.AddDays(1));
             Console.WriteLine();
 
         }
